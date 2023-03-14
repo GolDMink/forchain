@@ -59,6 +59,18 @@ Route::group(['middleware' => ['WasLogin']], function () {
         Route::get('/master-details/{id}', [App\Http\Controllers\PengetahuanController::class, 'details'])->name('details');
     });
 
+
+    // user
+    Route::name('user.')->prefix('user')->group(function () {
+        Route::get('index/',  [App\Http\Controllers\PenggunaController::class, 'index'])->name('index');
+        Route::get('getDatatablePengguna/',  [App\Http\Controllers\PenggunaController::class, 'getDatatablePenguna'])->name('getDatatablePengguna');
+        Route::get('edituser/{id}',  [App\Http\Controllers\PenggunaController::class, 'edit'])->name('edit');
+        Route::post('simpanuser/',  [App\Http\Controllers\PenggunaController::class, 'simpan'])->name('simpan');
+        Route::post('updateuser/',  [App\Http\Controllers\PenggunaController::class, 'update'])->name('update');
+        Route::delete('hapususer/{id}',  [App\Http\Controllers\PenggunaController::class, 'hapus'])->name('hapus');
+
+    });
+
     // RULE
     // Route::name('rule.')->prefix('rule')->group(function () {
 
