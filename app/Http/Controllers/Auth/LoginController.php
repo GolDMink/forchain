@@ -116,8 +116,13 @@ class LoginController extends Controller
                 DB::table('users')->where("username",'=',$username)->update($data_token);
 
                 session::put('user_app', (array)$user);
+                $session = session::get('user_app');
+                if($session['level'] == 'peserta'){
+                    return redirect('/')->with('session',$session);
+                }else{
+                    return redirect('dashboard');
+                }
 
-                return redirect('dashboard');
             } else {
                 return Redirect::back()->withErrors(['msg' => 'Password salah'])->withInput();;
             }

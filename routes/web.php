@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'toLogin'])->name('toLogin');
+Route::get('/',function(){
+    return view('landing');
+});
 Route::post('/trueLogin', [App\Http\Controllers\Auth\LoginController::class, 'trueLogin'])->name('trueLogin');
 
 Auth::routes();
 
 Route::group(['middleware' => ['WasLogin']], function () {
+    Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'toLogin'])->name('toLogin');
     Route::get('dashboard/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     // GEJALA
