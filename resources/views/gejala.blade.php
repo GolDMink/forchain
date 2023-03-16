@@ -19,7 +19,8 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title"> <span class="btn btn-primary btn-round btn-xs"> <i class="zmdi zmdi-flower-alt"></i></span> Data Gejala</h3>
+                                <h3 class="card-title"> <span class="btn btn-primary btn-round btn-xs"> <i
+                                            class="zmdi zmdi-flower-alt"></i></span> Data Gejala</h3>
                                 <div class="card-options">
                                     <a href="javascript:void(0)" class="btn btn-primary" id="btntambah"><i
                                             class="fa fa-plus"></i> Tambah Gejala</a>
@@ -33,6 +34,7 @@
                                                 <th class="wd-15p border-bottom-0">#</th>
                                                 <th class="wd-15p border-bottom-0">Kode Gejala</th>
                                                 <th class="wd-20p border-bottom-0">Nama Gejala</th>
+                                                <th class="wd-20p border-bottom-0">Gambar Gejala</th>
                                                 <th>aksi</th>
                                             </tr>
                                         </thead>
@@ -68,6 +70,12 @@
                                         <div class="col-md-9">
                                             <input type="text" name="nama" id="nama" class="form-control"
                                                 placeholder="nama inovasi">
+                                        </div>
+                                    </div>
+                                    <div class=" row mb-4">
+                                        <label for="inputName" class="col-md-3 form-label">Gambar Gejala</label>
+                                        <div class="col-md-9">
+                                            <input type="file" name="gambar" id="gambar" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group" align="center">
@@ -135,6 +143,15 @@
                         name: 'nama_gejala'
                     },
                     {
+                        data: 'gambar',
+                        name: 'gambar',
+                        render: function(data, type, full, meta) {
+                            return "<img src={{ URL::to('/') }}/gambargejala/" + data +
+                                " width='70' class='img-thumbnail' />";
+                        },
+                        orderable: false,
+                    },
+                    {
                         data: 'action',
                         name: 'action'
                     },
@@ -173,12 +190,7 @@
                     processData: false,
                     dataType: "json",
                     success: function(data) {
-                        $('#tabelgejala').DataTable().ajax.reload(null, false);
-                        swal(
-                            'Berhasil',
-                            'Data telah berhasil ditambah',
-                            'success'
-                        );
+                        console.log(data)
 
                         var html = '';
                         if (data.errors) {
@@ -189,6 +201,12 @@
                             html += '</div>';
                         }
                         if (data.success) {
+                            $('#tabelgejala').DataTable().ajax.reload(null, false);
+                            swal(
+                                'Berhasil',
+                                'Data telah berhasil ditambah',
+                                'success'
+                            );
                             html = '<div class="alert alert-success">' + data.success + '</div>';
                             $('#sample_form')[0].reset();
                             $('#modalinputgejala').modal('hide');

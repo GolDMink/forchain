@@ -32,7 +32,7 @@ class GejalaController extends Controller
 
     public function simpan(Request $request)
     {
-        return $request->all();
+        // return $request->all();
         $rules = array(
             'kode'    =>  'required',
             'nama'     =>  'required',
@@ -44,12 +44,26 @@ class GejalaController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        // if($userapp == 'opd'){
-        //     $loginopd = ;
-        // }
+
+        if ($request->file('gambar')) {
+            // if (file_exists(public_path('inovasi/filepernyataan/' . $data->pernyataan))) {
+            //     unlink(public_path('inovasi/filepernyataan/' . $data->pernyataan));
+            // }
+            $dokumen = $request->file('gambar');
+            $accepted_ext = [
+                'jpeg','jpg','png'
+            ];
+            if (!in_array($dokumen->getClientOriginalExtension(), $accepted_ext)) {
+                return response()->json(['messages' => 'File tidak sesuai', 'kode' => 2]);
+            }
+
+            $dokumen_name = 'gambar' . '-' . round(microtime(true) * 1000) . str_replace(' ', '-', $dokumen->getClientOriginalName());
+            $dokumen->move(public_path('gambargejala'), $dokumen_name);
+        }
         $form_data = array(
             'kode_gejala'        =>  $request->kode,
             'nama_gejala'        =>  $request->nama,
+            'gambar'        =>  $dokumen_name,
         );
 
         $inovasi = DB::table('gejala')->insert($form_data);
