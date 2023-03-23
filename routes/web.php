@@ -17,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',function(){
     return view('landing');
 });
+Route::name('konsultasi.')->prefix('konsultasi')->group(function () {
+
+    Route::get('form/',  [App\Http\Controllers\KonsultasiController::class, 'form'])->name('form');
+    Route::get('getform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'getform'])->name('getform');
+    Route::post('postform/',  [App\Http\Controllers\KonsultasiController::class, 'postform'])->name('postform');
+    Route::get('hasilform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'hasil'])->name('hasil');
+});
 Route::post('/trueLogin', [App\Http\Controllers\Auth\LoginController::class, 'trueLogin'])->name('trueLogin');
 
 Auth::routes();
@@ -34,6 +41,21 @@ Route::group(['middleware' => ['WasLogin']], function () {
         Route::post('updategejala/',  [App\Http\Controllers\GejalaController::class, 'update'])->name('update');
         Route::get('editgejala/{id}',  [App\Http\Controllers\GejalaController::class, 'edit'])->name('edit');
         Route::delete('hapusgejala/{id}',  [App\Http\Controllers\GejalaController::class, 'hapus'])->name('hapus');
+    });
+
+    // RULE
+    Route::name('rule.')->prefix('rule')->group(function () {
+
+        Route::get('index/',  [App\Http\Controllers\RuleController::class, 'index'])->name('index');
+        Route::get('datatable',  [App\Http\Controllers\RuleController::class, 'getdatatable'])->name('getDatatable');
+        Route::post('simpanrule/',  [App\Http\Controllers\RuleController::class, 'simpan'])->name('simpan');
+        Route::post('updaterule/',  [App\Http\Controllers\RuleController::class, 'update'])->name('update');
+        Route::get('editrule/{id}',  [App\Http\Controllers\RuleController::class, 'edit'])->name('edit');
+        Route::delete('hapusrule/{id}',  [App\Http\Controllers\RuleController::class, 'hapus'])->name('hapus');
+
+
+        Route::get('gejalaselect',  [App\Http\Controllers\RuleController::class, 'gejalaselect'])->name('gejalaselect');
+        Route::get('penyakitselect',  [App\Http\Controllers\RuleController::class, 'penyakitselect'])->name('penyakitselect');
     });
 
     // PENYAKIT

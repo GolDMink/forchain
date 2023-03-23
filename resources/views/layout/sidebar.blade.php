@@ -37,7 +37,7 @@
                                     <li><a href="{{route('gejala.index')}}" class="slide-item"> Data Gejala</a></li>
                                     <li><a href="{{route('penyakit.index')}}" class="slide-item"> Data Penyakit</a></li>
                                     <li><a href="{{route('pengetahuan.index')}}" class="slide-item"> Data Pengetahuan</a></li>
-                                    <li><a href="{{route('pengetahuan.index')}}" class="slide-item"> Data Rule</a></li>
+                                    <li><a href="{{route('rule.index')}}" class="slide-item"> Data Rule</a></li>
                                 </ul>
                             </div>
                         </div>

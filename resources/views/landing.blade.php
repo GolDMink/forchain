@@ -165,9 +165,9 @@
                                 beberapa fakta-fakta dengan mencari pedoman yang sesuai dengan dugaan/hipotesis yang
                                 muncul menuju suatu hasil / kesimpulan.</h6>
 
-                            <a href="https://themeforest.net/item/sash-bootstrap-5-admin-dashboard-template/35183671"
+                            <a href="{{route('konsultasi.form')}}"
                                 target="_blank" class="btn ripple btn-min w-lg mb-3 me-2 btn-primary"><i
-                                    class="fe fe-play me-2"></i> Mulaii
+                                    class="fe fe-play me-2"></i> Mulai
                             </a>
 
                         </div>
