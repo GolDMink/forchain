@@ -84,6 +84,7 @@ class RegisterController extends Controller
             'level' => 'peserta',
             'name' => $request['name'],
             'username' => $request['username'],
+            'password' => Hash::make($request['password'])
         ]);
         $userid = $user->id;
 
@@ -99,7 +100,7 @@ class RegisterController extends Controller
 
         session::put('user_app', (array)$getLogin);
 
-        return redirect()->back();
+        return redirect()->route('dashboard');
        }
 
     }

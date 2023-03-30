@@ -13,6 +13,6 @@ class Pengetahuan extends Model
 
     public function gejala()
     {
-        return $this->hasMany('App\Models\Gejala', 'id', 'gejala_id');
+        return $this->hasMany('App\Models\Gejala');
     }
 }

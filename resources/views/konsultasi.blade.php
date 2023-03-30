@@ -8,7 +8,7 @@
 
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
-
+                    <h1 class="page-title">Halaman Riwayat Konsultasi</h1>
                     <div>
                         <ol class="breadcrumb">
 
@@ -20,21 +20,18 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title"> <span class="btn btn-primary btn-round btn-xs"> <i
-                                            class="zmdi zmdi-flower-alt"></i></span> Data Gejala</h3>
-                                <div class="card-options">
-                                    <a href="javascript:void(0)" class="btn btn-primary" id="btntambah"><i
-                                            class="fa fa-plus"></i> Tambah Gejala</a>
-                                </div>
+                                            class="zmdi zmdi-flower-alt"></i></span> Data Riwayat</h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-nowrap border-bottom" id="tabelgejala">
+                                    <table class="table table-bordered text-nowrap border-bottom" id="tabelkonsul">
                                         <thead>
                                             <tr>
                                                 <th class="wd-15p border-bottom-0">#</th>
-                                                <th class="wd-15p border-bottom-0">Kode Gejala</th>
-                                                <th class="wd-20p border-bottom-0">Nama Gejala</th>
-                                                <th class="wd-20p border-bottom-0">Gambar Gejala</th>
+                                                <th class="wd-15p border-bottom-0">Kode Konsultasi</th>
+                                                <th class="wd-20p border-bottom-0">Nama Penyakit</th>
+                                                <th class="wd-20p border-bottom-0">Nama</th>
+                                                <th class="wd-20p border-bottom-0">Gejala</th>
                                                 <th>aksi</th>
                                             </tr>
                                         </thead>
@@ -99,7 +96,6 @@
     </div>
     <!-- CONTAINER CLOSED -->
     </div>
-    </div>
 @endsection
 @section('js')
     <!-- INTERNAL FORMEDITOR JS -->
@@ -123,34 +119,34 @@
         fill_datatable()
 
         function fill_datatable() {
-            var tabel = $('#tabelgejala').DataTable({
+            var tabel = $('#tabelkonsul').DataTable({
                 processing: true,
                 serverSide: true, //aktifkan server-side
 
                 ajax: {
-                    url: "{{ route('gejala.getDatatable') }}",
+                    url: "{{ route('konsultasi.datatable') }}",
                 },
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'kode_gejala',
-                        name: 'kode_gejala'
+                        data: 'kode_konsultasi',
+                        name: 'kode_konsultasi'
                     },
                     {
-                        data: 'nama_gejala',
-                        name: 'nama_gejala'
+                        data: 'penyakit_nama',
+                        name: 'penyakit_nama'
                     },
                     {
-                        data: 'gambar_gejala',
-                        name: 'gambar_gejala',
-                        render: function(data, type, full, meta) {
-                            return "<img src={{ URL::to('/') }}/gambargejala/" + data +
-                                " width='70' class='img-thumbnail' />";
-                        },
-                        orderable: false,
+                        data: 'name',
+                        name: 'name'
                     },
+                    {
+                        data: 'gejala',
+                        name: 'gejala'
+                    },
+
                     {
                         data: 'action',
                         name: 'action'
@@ -201,7 +197,7 @@
                             html += '</div>';
                         }
                         if (data.success) {
-                            $('#tabelgejala').DataTable().ajax.reload(null, false);
+                            $('#tabelkonsul').DataTable().ajax.reload(null, false);
                             swal(
                                 'Berhasil',
                                 'Data telah berhasil ditambah',
@@ -238,7 +234,7 @@
                             html = '<div class="alert alert-success">' + data.success + '</div>';
                             $('#sample_form')[0].reset();
                             $('#modalinputgejala').modal('hide');
-                            $('#tabelgejala').DataTable().ajax.reload(null, false);
+                            $('#tabelkonsul').DataTable().ajax.reload(null, false);
                             swal(
                                 'Berhasil',
                                 'Data telah berhasil diubah',
@@ -284,7 +280,7 @@
                             },
                             success: function(respon) {
                                 swal('Berhasil!', 'data tersebut berhasil dihapus', 'success');
-                                $('#tabelgejala').DataTable().ajax.reload();
+                                $('#tabelkonsul').DataTable().ajax.reload();
                             },
                             error: function(respon) {
                                 swal('oops!', 'gagal hapus', 'error');

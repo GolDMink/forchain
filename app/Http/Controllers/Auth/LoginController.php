@@ -104,7 +104,7 @@ class LoginController extends Controller
 		$username = trim($request->username);
 		$password = trim($request->password);
 
-        $getLogin = DB::table('users')->where('username','=',$username);
+        $getLogin = DB::table('login')->join('users','users.id','login.user_id')->where('login.username','=',$username);
 
         if($getLogin->exists()){
             $user = $getLogin->first();
@@ -117,12 +117,7 @@ class LoginController extends Controller
 
                 session::put('user_app', (array)$user);
                 $session = session::get('user_app');
-                if($session['level'] == 'peserta'){
-                    return redirect('/')->with('session',$session);
-                }else{
-                    return redirect('dashboard');
-                }
-
+                return redirect('dashboard');
             } else {
                 return Redirect::back()->withErrors(['msg' => 'Password salah'])->withInput();;
             }

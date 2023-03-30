@@ -10,6 +10,10 @@ class DashboardController extends Controller
     public function index()
     {
         $userapp = Session::get('user_app');
-        return view('dashboard',compact('userapp'));
+        if($userapp['level'] == 'admin'){
+            return view('dashboard',compact('userapp'));
+        }else{
+            return view('dashboardpeserta',compact('userapp'));
+        }
     }
 }

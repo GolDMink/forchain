@@ -118,13 +118,13 @@
                                     </ul>
                                     <div class="header-nav-right d-none d-lg-flex">
                                         @if (Session::has('user_app'))
-                                        <div class="profile">
-                                            <h4 class="mr-5"><b>{{ Session::get('user_app')['name'] }}</b></h4>
+                                            <div class="profile">
+                                                <h4 class="mr-5"><b>{{ Session::get('user_app')['name'] }}</b></h4>
 
-                                        </div>
-                                        &nbsp;
-                                        &nbsp;
-                                        &nbsp;
+                                            </div>
+                                            &nbsp;
+                                            &nbsp;
+                                            &nbsp;
 
                                             <button
                                                 class="btn ripple btn-min w-sm btn-danger me-2 my-auto d-lg-none d-xl-block d-block"
@@ -165,10 +165,16 @@
                                 beberapa fakta-fakta dengan mencari pedoman yang sesuai dengan dugaan/hipotesis yang
                                 muncul menuju suatu hasil / kesimpulan.</h6>
 
-                            <a href="{{route('konsultasi.form')}}"
-                                target="_blank" class="btn ripple btn-min w-lg mb-3 me-2 btn-primary"><i
-                                    class="fe fe-play me-2"></i> Mulai
-                            </a>
+
+                            @if (Session::has('user_app'))
+                                <a href="{{ route('konsultasi.form') }}" target="_blank"
+                                    class="btn ripple btn-min w-lg mb-3 me-2 btn-primary"><i
+                                        class="fe fe-play me-2"></i> Mulai
+                                </a>
+                            @else
+                                <button id="btnalert" class="btn ripple btn-min w-lg mb-3 me-2 btn-primary"> <i
+                                        class="fe fe-play me-2"></i>Mulai </button>
+                            @endif
 
                         </div>
                         <div class="col-xl-6 col-lg-6 my-auto">
@@ -188,8 +194,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('trueLogin') }}" method="post"
-                            class="login100-form validate-form">
+                        <form action="{{ route('trueLogin') }}" method="post" class="login100-form validate-form">
                             @csrf
                             <span class="login100-form-title pb-5">
                                 Halaman Login
@@ -233,141 +238,140 @@
             </div>
         </div>
     </div>
-        <div class="modal fade" id="modalregister" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-md" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Register</h5>
-                        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ route('register') }}">
-                            @csrf
+    <div class="modal fade" id="modalregister" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
 
-                            <div class="row mb-3">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                        <div class="row mb-3">
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
-                                <div class="col-md-6">
-                                    <input type="hidden" name="jenis" id="jenis" value="peserta">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <div class="col-md-6">
+                                <input type="hidden" name="jenis" id="jenis" value="peserta">
+                                <input id="name" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+                        </div>
 
-                            <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <div class="row mb-3">
+                            <label for="email"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email">
+                            <div class="col-md-6">
+                                <input id="email" type="email"
+                                    class="form-control @error('email') is-invalid @enderror" name="email"
+                                    value="{{ old('email') }}" required autocomplete="email">
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">Username</label>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">Username</label>
 
-                                <div class="col-md-6">
-                                    <input id="username" type="text"
-                                        class="form-control @error('username') is-invalid @enderror"
-                                        name="username" value="{{ old('username') }}" required
-                                        autocomplete="username">
+                            <div class="col-md-6">
+                                <input id="username" type="text"
+                                    class="form-control @error('username') is-invalid @enderror" name="username"
+                                    value="{{ old('username') }}" required autocomplete="username">
 
-                                    @error('username')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">Nama
-                                    Lengkap</label>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">Nama
+                                Lengkap</label>
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name">
+                            <div class="col-md-6">
+                                <input id="name" type="text"
+                                    class="form-control @error('name') is-invalid @enderror" name="name"
+                                    value="{{ old('name') }}" required autocomplete="name">
 
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+                        </div>
 
-                            <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                        <div class="row mb-3">
+                            <label for="password"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror"
-                                        name="password" required autocomplete="new-password">
+                            <div class="col-md-6">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="new-password">
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
+                        </div>
 
-                            <div class="row mb-3">
-                                <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                        <div class="row mb-3">
+                            <label for="password-confirm"
+                                class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password_confirmation" required autocomplete="new-password">
-                                </div>
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control"
+                                    name="password_confirmation" required autocomplete="new-password">
                             </div>
+                        </div>
 
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
+                        <div class="row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
-        <!--app-content open-->
-        <div class="main-content mt-0">
-            <div class="side-app">
+    <!--app-content open-->
+    <div class="main-content mt-0">
+        <div class="side-app">
 
 
-                <footer class="main-footer px-0 pb-0 text-center">
-                    <div class="row ">
-                        <div class="col-md-12 col-sm-12">
-                            SPK forward Chaining <span id="year"></span> | Rizky Suliazuhro
-                        </div>
+            <footer class="main-footer px-0 pb-0 text-center">
+                <div class="row ">
+                    <div class="col-md-12 col-sm-12">
+                        SPK forward Chaining <span id="year"></span> | Rizky Suliazuhro
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
         </div>
+    </div>
     </div>
 
     <!-- BACK-TO-TOP -->
@@ -402,6 +406,8 @@
 
     <!-- CUSTOM JS -->
     <script src="assets/js/landing.js"></script>
+    <script src="{{ asset('assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sweet-alert.js') }}"></script>
     <script>
         $(".btnlogin").click(function() {
             $("#modallogin").modal("show")
@@ -409,6 +415,14 @@
         $(".btnregister").click(function() {
             $("#modalregister").modal("show")
         })
+
+        $(document).on('click', '#btnalert', function() {
+            swal({
+                title: "Gagal Memulai",
+                text: "Untuk Memulai konsultasi harus masuk(login) ke sistem terlebih dahulu!",
+                type: "error",
+            }, );
+        });
     </script>
 
 </body>

@@ -63,7 +63,7 @@ class GejalaController extends Controller
         $form_data = array(
             'kode_gejala'        =>  $request->kode,
             'nama_gejala'        =>  $request->nama,
-            'gambar'        =>  $dokumen_name,
+            'gambar_gejala'        =>  $dokumen_name,
         );
 
         $inovasi = DB::table('gejala')->insert($form_data);

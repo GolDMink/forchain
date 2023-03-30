@@ -14,23 +14,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/',function(){
-    return view('landing');
+Route::get('/', function () {
+    return view('auth.login');
 });
-Route::name('konsultasi.')->prefix('konsultasi')->group(function () {
-
-    Route::get('form/',  [App\Http\Controllers\KonsultasiController::class, 'form'])->name('form');
-    Route::get('getform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'getform'])->name('getform');
-    Route::post('postform/',  [App\Http\Controllers\KonsultasiController::class, 'postform'])->name('postform');
-    Route::get('hasilform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'hasil'])->name('hasil');
+Route::get('/register', function () {
+    return view('auth.register');
 });
 Route::post('/trueLogin', [App\Http\Controllers\Auth\LoginController::class, 'trueLogin'])->name('trueLogin');
 
 Auth::routes();
 
 Route::group(['middleware' => ['WasLogin']], function () {
-    Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'toLogin'])->name('toLogin');
     Route::get('dashboard/', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+
+    Route::name('konsultasi.')->prefix('konsultasi')->group(function () {
+        Route::get('index/',  [App\Http\Controllers\KonsultasiController::class, 'index'])->name('index');
+        Route::get('datatable/',  [App\Http\Controllers\KonsultasiController::class, 'datatable'])->name('datatable');
+        Route::get('form/',  [App\Http\Controllers\KonsultasiController::class, 'form'])->name('form');
+        Route::get('getform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'getform'])->name('getform');
+        Route::post('postform/',  [App\Http\Controllers\KonsultasiController::class, 'postform'])->name('postform');
+        Route::get('hasilform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'hasil'])->name('hasil');
+        Route::get('riwayat',  [App\Http\Controllers\KonsultasiController::class, 'riwayat'])->name('riwayat');
+    });
+
+    Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'toLogin'])->name('toLogin');
 
     // GEJALA
     Route::name('gejala.')->prefix('gejala')->group(function () {
@@ -93,7 +101,6 @@ Route::group(['middleware' => ['WasLogin']], function () {
         Route::post('simpanuser/',  [App\Http\Controllers\PenggunaController::class, 'simpan'])->name('simpan');
         Route::post('updateuser/',  [App\Http\Controllers\PenggunaController::class, 'update'])->name('update');
         Route::delete('hapususer/{id}',  [App\Http\Controllers\PenggunaController::class, 'hapus'])->name('hapus');
-
     });
 
 
@@ -105,7 +112,6 @@ Route::group(['middleware' => ['WasLogin']], function () {
         Route::post('simpanpengguna/',  [App\Http\Controllers\PenggunaController::class, 'simpanpengguna'])->name('simpan');
         Route::post('updatepengguna/',  [App\Http\Controllers\PenggunaController::class, 'updatepengguna'])->name('update');
         Route::delete('hapuspengguna/{id}',  [App\Http\Controllers\PenggunaController::class, 'hapuspengguna'])->name('hapus');
-
     });
 
     // RULE
