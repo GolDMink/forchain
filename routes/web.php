@@ -34,8 +34,10 @@ Route::group(['middleware' => ['WasLogin']], function () {
         Route::get('form/',  [App\Http\Controllers\KonsultasiController::class, 'form'])->name('form');
         Route::get('getform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'getform'])->name('getform');
         Route::post('postform/',  [App\Http\Controllers\KonsultasiController::class, 'postform'])->name('postform');
-        Route::get('hasilform/{id}',  [App\Http\Controllers\KonsultasiController::class, 'hasil'])->name('hasil');
+        Route::post('postforms/',  [App\Http\Controllers\KonsultasiController::class, 'postforms'])->name('postforms');
+        Route::get('hasilform/{data}',  [App\Http\Controllers\KonsultasiController::class, 'hasil'])->name('hasil');
         Route::get('riwayat',  [App\Http\Controllers\KonsultasiController::class, 'riwayat'])->name('riwayat');
+        Route::get('cetak/{id}',  [App\Http\Controllers\KonsultasiController::class, 'cetak'])->name('cetak');
     });
 
     Route::get('/admin', [App\Http\Controllers\Auth\LoginController::class, 'toLogin'])->name('toLogin');
@@ -87,7 +89,7 @@ Route::group(['middleware' => ['WasLogin']], function () {
         Route::post('updatepengetahuan/',  [App\Http\Controllers\PengetahuanController::class, 'update'])->name('update');
         Route::get('editpengetahuan/{id}',  [App\Http\Controllers\PengetahuanController::class, 'edit'])->name('edit');
         Route::delete('hapuspengetahuan/{id}',  [App\Http\Controllers\PengetahuanController::class, 'hapus'])->name('hapus');
-        Route::delete('hapusgejala/{idp}/{idg}',  [App\Http\Controllers\PengetahuanController::class, 'hapusgejala'])->name('hapusgejala');
+        Route::delete('hapus/{id}',  [App\Http\Controllers\PengetahuanController::class, 'hapus'])->name('hapus');
 
         Route::get('/master-details/{id}', [App\Http\Controllers\PengetahuanController::class, 'details'])->name('details');
     });

@@ -1,3 +1,6 @@
+{{-- @php
+    dd($gejala);
+@endphp --}}
 @extends('layout.masters')
 @section('css')
 
@@ -12,12 +15,7 @@
                 <!-- PAGE-HEADER -->
                 <div class="page-header">
                     <h1 class="page-title">Detail Konsultasi</h1>
-                    <div>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Switcher</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Switcher Style-1</li>
-                        </ol>
-                    </div>
+
                 </div>
                 <!-- PAGE-HEADER END -->
 
@@ -28,7 +26,7 @@
                                 <div class="card-header">
                                     <h3 class="card-title">Detail hasil Konsultasi</h3>
                                     <div class="card-options">
-                                        <button class="btn btn-primary push-end"> <i class="fa fa-print"></i> Cetak</button>
+                                        <button class="btn btn-primary push-end" id="cetak" data-id="{{$rule->idkonsultasi}}"> <i class="fa fa-print"></i> Cetak</button>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -38,6 +36,7 @@
                                             <dd class="col-sm-9">:  {{$rule->name}}</dd>
                                             <dt class="col-sm-3">Kode Konsultasi </dt>
                                             <dd class="col-sm-9"> : {{ $rule->kode_konsultasi }}</dd>
+
                                             <br><br>
                                             <hr>
                                             <dt class="col-sm-3">1. Penyakit</dt>
@@ -47,15 +46,12 @@
                                             <dt class="col-sm-3">3. Solusi</dt>
                                             <dd class="col-sm-9">:  {{$rule->penyakit_solusi}}</dd>
 
+
                                             <dt class="col-sm-3">4. Gejala</dt>
                                             <dd class="col-sm-9">
-                                                <ul class="list-group">
-                                                    @foreach ($gejala as $item)
-                                                        <li class="listunorder">{{$item->nama_gejala}}</li>
-
-                                                    @endforeach
-                                                </ul>
+                                                {!!$gejala!!}
                                             </dd>
+
                                         </dl>
                                     </div>
                                 </div>
@@ -69,5 +65,14 @@
         </div>
     @endsection
     @section('js')
+    <script>
+        $(document).ready(function(){
+            $("#cetak").on('click',function(){
+                var id = $(this).data("id")
+                // alert(id)
+                window.location.href = '/konsultasi/cetak' + '/' + id
+            })
 
+        })
+    </script>
     @endsection

@@ -47,8 +47,9 @@
                             </button>
                         </div>
                     </div>
-            </form>
-            <div class="text-center mt-3">
+                </form>
+                <div class="text-center mt-3">
+                <a href="{{route('register')}}" class="text-primary text-center">Belum Punya Akun, <b>Register</b></a>
             </div>
         </div>
     </div>

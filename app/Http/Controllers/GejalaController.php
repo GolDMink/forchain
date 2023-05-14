@@ -59,6 +59,8 @@ class GejalaController extends Controller
 
             $dokumen_name = 'gambar' . '-' . round(microtime(true) * 1000) . str_replace(' ', '-', $dokumen->getClientOriginalName());
             $dokumen->move(public_path('gambargejala'), $dokumen_name);
+        }else{
+            $dokumen_name = 'gejala.png';
         }
         $form_data = array(
             'kode_gejala'        =>  $request->kode,

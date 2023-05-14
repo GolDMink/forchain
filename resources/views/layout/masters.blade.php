@@ -7,32 +7,31 @@
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Sash – Bootstrap 5  Admin & Dashboard Template">
     <meta name="author" content="Spruko Technologies Private Limited">
     <meta name="keywords"
         content="admin,admin dashboard,admin panel,admin template,bootstrap,clean,dashboard,flat,jquery,modern,responsive,premium admin templates,responsive admin,ui,ui kit.">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/brand/favicon.ico')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/brand/favicon.ico') }}">
 
     <!-- TITLE -->
-    <title>Sash – Bootstrap 5 Admin & Dashboard Template</title>
+    <title>forchain – </title>
 
     <!-- BOOTSTRAP CSS -->
-    <link id="style" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link id="style" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- STYLE CSS -->
-    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
     <!-- Plugins CSS -->
-    <link href="{{asset('assets/css/plugins.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/plugins.css') }}" rel="stylesheet">
 
     <!--- FONT-ICONS CSS -->
-    <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
 
     <!-- INTERNAL Switcher css -->
-    <link href="{{asset('assets/switcher/css/switcher.css')}}" rel="stylesheet">
-    <link href="{{asset('assets/switcher/demo.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/switcher/css/switcher.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/switcher/demo.css') }}" rel="stylesheet">
     @yield('css')
 </head>
 
@@ -41,7 +40,7 @@
 
     <!-- GLOBAL-LOADER -->
     <div id="global-loader">
-        <img src="{{asset('assets/images/loader.svg')}}" class="loader-img" alt="Loader">
+        <img src="{{ asset('assets/images/loader.svg') }}" class="loader-img" alt="Loader">
     </div>
     <!-- /GLOBAL-LOADER -->
 
@@ -52,16 +51,13 @@
             <!-- app-Header -->
             <div class="header sticky hor-header">
                 <div class="container-fluid main-container">
+                    <a class="logo-horizontal " href="/dashboard">
+                        <h3 class="text-center"><b>AVOMANGO</b></h3>
+                    </a>
                     <div class="d-flex">
                         <a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar"
                             href="javascript:void(0)"></a>
                         <!-- sidebar-toggle-->
-                        <a class="logo-horizontal " href="index.html">
-                            <img src="../assets/images/brand/logo-white.png" class="header-brand-img desktop-logo"
-                                alt="logo">
-                            <img src="../assets/images/brand/logo-dark.png" class="header-brand-img light-logo1"
-                                alt="logo">
-                        </a>
                         <!-- LOGO -->
 
                         <div class="d-flex order-lg-2 ms-auto header-right-icons">
@@ -72,44 +68,6 @@
                                 aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon fe fe-more-vertical"></span>
                             </button>
-                            <div class="navbar navbar-collapse responsive-navbar p-0">
-                                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-                                    <div class="d-flex order-lg-2">
-
-                                        <!-- SIDE-MENU -->
-                                        <div class="dropdown d-flex profile-1">
-                                            <a href="javascript:void(0)" data-bs-toggle="dropdown"
-                                                class="nav-link leading-none d-flex">
-                                                <img src="../assets/images/users/21.jpg" alt="profile-user"
-                                                    class="avatar  profile-user brround cover-image">
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                                <div class="drop-heading">
-                                                    <div class="text-center">
-                                                        <h5 class="text-dark mb-0 fs-14 fw-semibold">
-                                                            {{ Session::get('user_app')['name'] }}</h5>
-                                                        <small
-                                                            class="text-muted">{{ Session::get('user_app')['level'] }}</small>
-                                                    </div>
-                                                </div>
-                                                <div class="dropdown-divider m-0"></div>
-                                                <a class="dropdown-item" href="profile.html">
-                                                    <i class="dropdown-icon fe fe-user"></i> Profile
-                                                </a>
-                                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                                <i class="dropdown-icon fa fa-sign-out"></i> Logout
-                                            </a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,13 +80,13 @@
                 <div class="app-sidebar">
                     <div class="side-header">
                         <a class="header-brand1" href="index.html">
-                            <img src="../assets/images/brand/logo-white.png" class="header-brand-img desktop-logo"
+                            <img src="{{ asset('assets/images/logo.png') }}" class="header-brand-img desktop-logo"
                                 alt="logo">
-                            <img src="../assets/images/brand/icon-white.png" class="header-brand-img toggle-logo"
+                            <img src="{{ asset('assets/images/logo.png') }}" class="header-brand-img toggle-logo"
                                 alt="logo">
-                            <img src="../assets/images/brand/icon-dark.png" class="header-brand-img light-logo"
+                            <img src="{{ asset('assets/images/logo.png') }}" class="header-brand-img light-logo"
                                 alt="logo">
-                            <img src="../assets/images/brand/logo-dark.png" class="header-brand-img light-logo1"
+                            <img src="{{ asset('assets/images/logo.png') }}" class="header-brand-img light-logo1"
                                 alt="logo">
                         </a>
                         <!-- LOGO -->
@@ -143,24 +101,33 @@
                                 <h3>Main</h3>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="index.html"><i
-                                        class="side-menu__icon fe fe-home"></i><span
+                                <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                    href="{{ url('/dashboard') }}"><i class="side-menu__icon fe fe-home"></i><span
                                         class="side-menu__label">Dashboard</span></a>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('konsultasi.form')}}"><i
+                                <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                    href="{{ route('konsultasi.form') }}"><i
                                         class="side-menu__icon fe fe-book"></i><span
                                         class="side-menu__label">Konsultasi</span></a>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('konsultasi.riwayat')}}"><i
-                                        class="side-menu__icon fe fe-book"></i><span
-                                        class="side-menu__label">Riwayat Konsultasi</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide"
+                                    href="{{ route('konsultasi.riwayat') }}"><i
+                                        class="side-menu__icon fe fe-book"></i><span class="side-menu__label">Riwayat
+                                        Konsultasi</span></a>
                             </li>
                             <li class="slide">
-                                <a class="side-menu__item has-link" data-bs-toggle="slide" href=""><i
-                                        class="side-menu__icon fe fe-users"></i><span
-                                        class="side-menu__label">Profil</span></a>
+                                <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"><i
+                                        class="side-menu__icon fa fa-sign-out"></i><span
+                                        class="side-menu__label">Logout</span></a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+
                             </li>
                         </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg"
@@ -286,9 +253,7 @@
             <div class="container">
                 <div class="row align-items-center flex-row-reverse">
                     <div class="col-md-12 col-sm-12 text-center">
-                        Copyright © <span id="year"></span> <a href="javascript:void(0)">Sash</a>. Designed with
-                        <span class="fa fa-heart text-danger"></span> by <a href="javascript:void(0)"> Spruko </a> All
-                        rights reserved.
+                        Rizky Aulia
                     </div>
                 </div>
             </div>
@@ -300,41 +265,41 @@
     <a href="#top" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
     <!-- JQUERY JS -->
-    <script src="{{asset('assets/js/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 
     <!-- BOOTSTRAP JS -->
-    <script src="{{asset('assets/plugins/bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 
     <!-- TypeHead js -->
-    <script src="{{asset('assets/plugins/bootstrap5-typehead/autocomplete.js')}}"></script>
-    <script src="{{asset('assets/js/typehead.js')}}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap5-typehead/autocomplete.js') }}"></script>
+    <script src="{{ asset('assets/js/typehead.js') }}"></script>
 
     <!-- Perfect SCROLLBAR JS-->
-    <script src="{{asset('assets/plugins/p-scroll/perfect-scrollbar.js')}}"></script>
-    <script src="{{asset('assets/plugins/p-scroll/pscroll.js')}}"></script>
-    <script src="{{asset('assets/plugins/p-scroll/pscroll-1.js')}}"></script>
+    <script src="{{ asset('assets/plugins/p-scroll/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/plugins/p-scroll/pscroll.js') }}"></script>
+    <script src="{{ asset('assets/plugins/p-scroll/pscroll-1.js') }}"></script>
 
     <!-- SIDE-MENU JS -->
-    <script src="{{asset('assets/plugins/sidemenu/sidemenu.js')}}"></script>
+    <script src="{{ asset('assets/plugins/sidemenu/sidemenu.js') }}"></script>
 
     <!-- SIDEBAR JS -->
-    <script src="{{asset('assets/plugins/sidebar/sidebar.js')}}"></script>
+    <script src="{{ asset('assets/plugins/sidebar/sidebar.js') }}"></script>
 
     <!-- Color Theme js -->
-    <script src="{{asset('assets/js/themeColors.js')}}"></script>
+    <script src="{{ asset('assets/js/themeColors.js') }}"></script>
 
     <!-- Sticky js -->
-    <script src="{{asset('assets/js/sticky.js')}}"></script>
+    <script src="{{ asset('assets/js/sticky.js') }}"></script>
 
     <!-- CUSTOM JS -->
-    <script src="{{asset('assets/js/custom.js')}}"></script>
+    <script src="{{ asset('assets/js/custom.js') }}"></script>
 
     <!-- Custom-switcher -->
-    <script src="{{asset('assets/js/custom-swicher.js')}}"></script>
+    <script src="{{ asset('assets/js/custom-swicher.js') }}"></script>
 
     <!-- Switcher js -->
-    <script src="{{asset('assets/switcher/js/switcher.js')}}"></script>
+    <script src="{{ asset('assets/switcher/js/switcher.js') }}"></script>
     @yield('js')
 </body>
 

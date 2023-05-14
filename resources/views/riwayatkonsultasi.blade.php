@@ -116,6 +116,7 @@
             });
 
         });
+
         fill_datatable()
 
         function fill_datatable() {
@@ -169,6 +170,10 @@
                     $('#action').val("Edit");
                 }
             })
+        })
+        $(document).on('click', '#cetak', function() {
+            var id = $(this).data('id');
+            window.location.href = '/konsultasi/cetak' + '/' + id
         })
         $('#sample_form').on('submit', function(event) {
             event.preventDefault();

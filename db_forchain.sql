@@ -1,17 +1,17 @@
 /*
- Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
  Source Server         : localhost_3306
  Source Server Type    : MySQL
- Source Server Version : 100411
+ Source Server Version : 100411 (10.4.11-MariaDB)
  Source Host           : localhost:3306
  Source Schema         : db_forchain
 
  Target Server Type    : MySQL
- Target Server Version : 100411
+ Target Server Version : 100411 (10.4.11-MariaDB)
  File Encoding         : 65001
 
- Date: 30/03/2023 20:26:26
+ Date: 15/05/2023 03:07:11
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `failed_jobs`  (
   `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `failed_jobs_uuid_unique`(`uuid`) USING BTREE
+  UNIQUE INDEX `failed_jobs_uuid_unique`(`uuid` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -49,15 +49,35 @@ CREATE TABLE `gejala`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gejala
 -- ----------------------------
-INSERT INTO `gejala` VALUES (1, 'Gejala 1', 'G001', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
-INSERT INTO `gejala` VALUES (2, 'GEJALA 2', 'G002', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
-INSERT INTO `gejala` VALUES (3, 'GEJALA 3', 'G003', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
-INSERT INTO `gejala` VALUES (4, 'GEJALA 4', 'G004', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (1, 'Bercak hitam kecoklatan/kemerahan pada daun', 'G001 ', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (2, 'Bunga menjadi mengering dan berguguran', 'G002 ', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (3, 'Bercak hitam pada buah dan berguguran', 'G003 ', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (4, 'Kulit batang/ranting pecah-pecah', 'G004 ', 'gambar-1679622341401logopemkot1.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (5, 'Mengelurakan cairan getah berwarana coklat kehitaman pada batang', 'G005 ', 'gambar-1683811970131logo.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (6, 'Kulit batang menglupas dan akhirnya bisa mati', 'G006 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (7, 'Daun berbintik hitam dan menggulung', 'G007 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (8, 'Bunga menjadi layu', 'G008 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (9, 'Buah busuk', 'G009 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (10, 'Daun berubah menjadi hitam', 'G010 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (11, 'Bercak kuning yang akan berubah menjadi abu-abu', 'G011 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (12, 'Mempengaruhi proses pembuahan', 'G012 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (13, 'Bercak coklat kemerahan pada daun dan bunga', 'G013 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (14, 'Pohon menjadi susah besar alias pertumbuhannya lambat', 'G014 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (15, 'Daun mulai berkurang sehingga pohon terlihat gersang', 'G015 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (16, 'Kematian Tanaman', 'G016 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (17, 'Kulit buah terdapat titik noda hitam', 'G017 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (18, 'Buah jatuh/berguguran', 'G018 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (19, 'Permukaan daun berbintil-bintil menyerupai bisul', 'G019 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (20, 'Daun Memucat', 'G020 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (21, 'Serbuk gergaji pada pucuk atau cabang mangga', 'G021 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (22, 'Tunas daun layu', 'G022 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (23, 'Tanaman mati', 'G023 ', 'gejala.png', NULL, NULL);
+INSERT INTO `gejala` VALUES (24, 'Mati pucuk', 'G024 ', 'gejala.png', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for konsultasi
@@ -67,34 +87,19 @@ CREATE TABLE `konsultasi`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `kode_konsultasi` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint UNSIGNED NOT NULL,
-  `penyakit_id` bigint UNSIGNED NOT NULL,
+  `rule_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 74 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of konsultasi
 -- ----------------------------
-INSERT INTO `konsultasi` VALUES (1, '641cc2a9e00f2', 15, 0, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (2, '641cc2cf9461b', 15, 1, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (3, '641cc62386893', 15, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (4, '641cff132fb9f', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (5, '641d0a2b59087', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (6, '641d0a59f281f', 9, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (7, '641d0b27d747b', 17, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (8, '641d0b644827e', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (9, '641d6b58d315c', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (10, '641d6c85e5917', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (11, '641d6cd721565', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (12, '641d6d5edb4ff', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (13, '641d75a32b64b', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (14, '641dd5f57a41e', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (15, '641ddbef282ab', 16, 1, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (16, '641de3f8470af', 16, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (17, '641f5556335cb', 10, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (18, '641f55ed30e36', 18, 3, NULL, NULL);
-INSERT INTO `konsultasi` VALUES (19, '641f56b712213', 18, 3, NULL, NULL);
+INSERT INTO `konsultasi` VALUES (70, '6460a45c032d1', 19, 1, NULL, NULL);
+INSERT INTO `konsultasi` VALUES (71, '6460a54d010c5', 19, 1, NULL, NULL);
+INSERT INTO `konsultasi` VALUES (72, '6460a57c461a0', 19, 13, NULL, NULL);
+INSERT INTO `konsultasi` VALUES (73, '6460da3eec3bd', 19, 13, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for login
@@ -110,7 +115,7 @@ CREATE TABLE `login`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of login
@@ -121,6 +126,8 @@ INSERT INTO `login` VALUES (7, 15, 'adi', '$2y$10$V4X/0GJy4kK8evXoMif5heSPJ4K1fu
 INSERT INTO `login` VALUES (8, 16, 'yudi', '$2y$10$.Z7jL.ygAr7tepLZA0bcJuj//y1P26C7OPQnuOD1/JYgMbtNo76Zi', '7Fr4C0AXoddsC9QVzD2lerIgMwemOQBsOolQRcIU6c29kkseUMudc1qJ4sIGsBazrPVppuKNdivteCzO', NULL, NULL, NULL);
 INSERT INTO `login` VALUES (9, 17, 'arif', '$2y$10$QRzVFI.EMjvbmMXWdXZ6c.jCcqT.3unkqGAB8QggposdCerjQATVO', 'qExN1QPZHiaD2aj3Loz66Kst09i4bkGOyglKou5CA9QZxD3ehNQHhouKY1DaLFiHUpu9m7kdHqNsGFGL', NULL, NULL, NULL);
 INSERT INTO `login` VALUES (10, 18, 'ahmad', '$2y$10$s9Mx9HuCEkC2e1wHRgwmzerjeBsI226qw1YNRiUCZKRcMlrTb6F4K', 'or7xa0U2idaaguMDdFqpv0CRnAgY4s1dyUxlL4BxEsL4LrWd7zZs5t8fQiSMX3lMrnNKA1CBund8XjsV', NULL, NULL, NULL);
+INSERT INTO `login` VALUES (11, 19, 'abcd', '$2y$10$wcQqtqtnsykTznDWIdQYGeyaSX0HoQgq/9y/vEhgRBZPT6g/MM4Hm', 'YsNK1qAPUYegfsBDkWoSf51dUgU6gfEGuenWXsRfnsBLOVKLss97li6K9qYQsDNvaJ8zdTkwzaE4bd9j', NULL, NULL, NULL);
+INSERT INTO `login` VALUES (12, 20, 'ayu', '$2y$10$uvM5LiqyxhGtDnEEGrL56.h/hpah68zJwi2kYao80PJZTu5VJE3xG', 'uJAuRox20kOc5zz85Zl5iJPcv9ldCWAUYdGssXv7idrbE6hqZeK2giLYKkv0xds3i6oIzf7e2dHOdc3p', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for migrations
@@ -154,7 +161,7 @@ CREATE TABLE `password_resets`  (
   `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  INDEX `password_resets_email_index`(`email`) USING BTREE
+  INDEX `password_resets_email_index`(`email` ASC) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -167,20 +174,19 @@ CREATE TABLE `password_resets`  (
 DROP TABLE IF EXISTS `pengetahuan`;
 CREATE TABLE `pengetahuan`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `kode_rule` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `penyakit_id` bigint UNSIGNED NOT NULL,
-  `gejala_id` bigint UNSIGNED NOT NULL,
+  `gejala_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of pengetahuan
 -- ----------------------------
-INSERT INTO `pengetahuan` VALUES (1, 1, 1, NULL, NULL);
-INSERT INTO `pengetahuan` VALUES (2, 2, 2, NULL, NULL);
-INSERT INTO `pengetahuan` VALUES (4, 3, 1, NULL, NULL);
-INSERT INTO `pengetahuan` VALUES (5, 3, 3, NULL, NULL);
+INSERT INTO `pengetahuan` VALUES (13, 'R001', 1, '1,2,3,4', NULL, NULL);
+INSERT INTO `pengetahuan` VALUES (14, 'R002', 2, '8,9,10', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for pengetahuan2
@@ -228,14 +234,15 @@ CREATE TABLE `penyakit`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of penyakit
 -- ----------------------------
-INSERT INTO `penyakit` VALUES (1, 'P001', 'PENYAKIT 1', 'SEBAB PENYAKIT', 'SOLUSI PENYAKIT', NULL, NULL);
-INSERT INTO `penyakit` VALUES (2, 'P002', 'PENYAKIT 2', 'SEBAB PENYAKIT', 'SOLUSI PENYAKIT', NULL, NULL);
-INSERT INTO `penyakit` VALUES (3, 'P003', 'PENYAKIT 3', 'SEBAB PENYAKIT', 'SOLUSI PENYAKIT', NULL, NULL);
+INSERT INTO `penyakit` VALUES (1, 'P001 ', 'Antraknose', 'SEBAB PENYAKIT', 'SOLUSI PENYAKIT', NULL, NULL);
+INSERT INTO `penyakit` VALUES (2, 'P002 ', 'Diplodia', 'SEBAB PENYAKIT', 'SOLUSI PENYAKIT', NULL, NULL);
+INSERT INTO `penyakit` VALUES (3, 'P003 ', 'Bercak Karat Merah', 'SEBAB PENYAKIT', 'SOLUSI PENYAKIT', NULL, NULL);
+INSERT INTO `penyakit` VALUES (4, 'P004', 'Ulat Penggerek Buah', 'SEBAB PENYAKIT', 'solusi penyakit', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -253,8 +260,8 @@ CREATE TABLE `personal_access_tokens`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `personal_access_tokens_token_unique`(`token`) USING BTREE,
-  INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type`, `tokenable_id`) USING BTREE
+  UNIQUE INDEX `personal_access_tokens_token_unique`(`token` ASC) USING BTREE,
+  INDEX `personal_access_tokens_tokenable_type_tokenable_id_index`(`tokenable_type` ASC, `tokenable_id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -298,8 +305,8 @@ CREATE TABLE `users`  (
   `updated_at` timestamp NULL DEFAULT NULL,
   `token` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `users_email_unique`(`emails`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+  UNIQUE INDEX `users_email_unique`(`emails` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
@@ -307,12 +314,14 @@ CREATE TABLE `users`  (
 INSERT INTO `users` VALUES (1, 'lutfirudianto', 'Lutfi Rudianto', 'test@example.com', '2023-03-14 11:55:38', 'admin', '$2y$10$F9rhXvY.ghAwmm2V0m2VZ.FKq7Ktdq9DQnHRP5bHJ5fyOYS9Jp2J.', '27r2GECl4d', '2023-03-14 11:55:38', '2023-03-14 11:55:38', 'wcd4WZdz30L8olRqsvSQh64XRrIq5Moo2RInob6Yf8cReUFsdKGfnK6UtorrOZERPjESKgLwd82lAQb0');
 INSERT INTO `users` VALUES (7, 'aji', 'aji', NULL, NULL, 'admin', '$2y$10$6v5.RNMe3UNII/XHBWMDzehsZAjVCzi.yN6xX3ubIciuW.sekq8te', NULL, '2023-03-14 13:02:09', '2023-03-14 13:02:09', '');
 INSERT INTO `users` VALUES (11, 'fatun nida', 'fatun nida', NULL, NULL, 'admin', '$2y$10$K3GyzdBgh2hkCLEdo.m2au13I1woPxVymwL4NstxJk6qA7jh2WRny', NULL, '2023-03-14 14:02:08', '2023-03-14 14:02:08', '');
-INSERT INTO `users` VALUES (13, 'lutfi', 'lutfirudianto', NULL, NULL, 'admin', '$2y$10$DAl.v/3Dh/.RZJ2GJHT2vO89hPur163Qg07NqKMJHDc38fthWz8By', NULL, '2023-03-22 03:53:56', '2023-03-22 03:53:56', 'rIeSeCvUHNL6doLdIhIsREnYfRgFTc7s67YKdJa1OjCssQASMg1kECJLcxVKt57JYiZlXWsaMyH7fqDP');
-INSERT INTO `users` VALUES (14, 'riris', 'riris z', NULL, NULL, 'peserta', '', NULL, '2023-03-23 19:54:41', '2023-03-23 19:54:41', '');
+INSERT INTO `users` VALUES (13, 'lutfi', 'lutfirudianto', NULL, NULL, 'admin', '$2y$10$DAl.v/3Dh/.RZJ2GJHT2vO89hPur163Qg07NqKMJHDc38fthWz8By', NULL, '2023-03-22 03:53:56', '2023-03-22 03:53:56', 'rByuXnusxNSnd9lwPrBqdN9EB1g4OhiDd5yeRNff2W0PBcYlmdPNJ1a0r0fvAijas2kfcTBd3CXk5Oop');
+INSERT INTO `users` VALUES (14, 'riris', 'riris z', NULL, NULL, 'admin', '$2y$10$JQJyTOkYwGx8Kj1CfLilWui2pARLMwNkw5Ov5GPd0ECK3/7l484au', NULL, '2023-03-23 19:54:41', '2023-03-23 19:54:41', 'nKlPgJPC3s1duokseLkZdk4drjtLA4sEh4c9xi0IPqIvZWtQSHGIKhkXdNssSdxWsSK4XHxOJ5Sd8dsr');
 INSERT INTO `users` VALUES (15, 'adi', 'adi s', NULL, NULL, 'peserta', '', NULL, '2023-03-23 21:17:45', '2023-03-23 21:17:45', '');
 INSERT INTO `users` VALUES (16, 'yudi', 'yudi', NULL, NULL, 'peserta', '$2y$10$DAl.v/3Dh/.RZJ2GJHT2vO89hPur163Qg07NqKMJHDc38fthWz8By', NULL, '2023-03-24 01:36:56', '2023-03-24 01:36:56', 'W5fStIPs7ui9nfw9epzCOp2r9EhdnUqkzi7TA3NGSU71Ve8sjgYCCKo0SOp213AxdABekWtssDwilDmF');
 INSERT INTO `users` VALUES (17, 'arif', 'arif', NULL, NULL, 'peserta', '$2y$10$YKEcBZ3cIx2FeDXZv00LH.6MB45tod6GIVi/GJLj7l.YRgiWsD7eO', NULL, '2023-03-24 02:26:26', '2023-03-24 02:26:26', 'dCJ01PZh0ESMtsKXlvtws7AwctzZjSYsFs9L3cSL4ffbVZN0sZ0edh7OVFiiZkHChoVIbdBuOucbJKcp');
 INSERT INTO `users` VALUES (18, 'ahmad', 'ahmad setiaji', NULL, NULL, 'peserta', '$2y$10$N7D8TrwsKP6qiW5CJHeokeheaw1tyXzTUdBBqneDld6OoUBtZW8Ba', NULL, '2023-03-25 20:10:02', '2023-03-25 20:10:02', '');
+INSERT INTO `users` VALUES (19, 'abcd', 'abcd', NULL, NULL, 'peserta', '$2y$10$JQJyTOkYwGx8Kj1CfLilWui2pARLMwNkw5Ov5GPd0ECK3/7l484au', NULL, '2023-04-14 13:53:49', '2023-04-14 13:53:49', '30BG1sb2UaNTRvHb93erB7UGGFfsZYdWKEMhRdnuRRGljr8RKeHHEu2soCq3lAdTaSdOeC10pdU0dx98');
+INSERT INTO `users` VALUES (20, 'ayu', 'ayu wulandari', NULL, NULL, 'peserta', '$2y$10$b0VtLJt0fCds7ufnwBPXNuiOw88pw8DtolIOdWLW8E5EKThtA0VeK', NULL, '2023-05-14 19:24:30', '2023-05-14 19:24:30', 'GaQzLHUdcQoBocidddmLyLsodWUsXZWSuFx4HORptmNoqWz20ViOELCxEL8PxSIT0TOebWYx3Drims0C');
 
 -- ----------------------------
 -- View structure for v_login

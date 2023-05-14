@@ -10,7 +10,10 @@
 
     <div class="container">
         <div class="wrap-login100 p-6">
-            <h4>Halaman register</h4>
+            <div class="text-center py-3">
+                <h4>Halaman register</h4>
+
+            </div>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
@@ -109,13 +112,14 @@
 
                 <div class="row mb-0">
                     <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-block">
                             {{ __('Register') }}
                         </button>
                     </div>
                 </div>
             </form>
             <div class="text-center mt-3">
+                <a href="{{route('login')}}" class="text-primary text-center">Sudah Punya Akun, <b>Login</b></a>
             </div>
         </div>
     </div>

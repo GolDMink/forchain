@@ -16,34 +16,6 @@
                     </div>
                 </div>
                 <!-- ROW OPEN -->
-                <div class="row d-flex justify-content-center">
-                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
-                        <div class="card bg-primary img-card box-primary-shadow">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="text-white">
-                                        <h2 class="mb-0 number-font">5</h2>
-                                        <p class="text-white mb-0">Total Inovasi </p>
-                                    </div>
-                                    <div class="ms-auto"> <i class="fa fa-tachometer text-white fs-30 me-2 mt-2"></i> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
-                        <div class="card bg-primary img-card box-primary-shadow">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="text-white">
-                                        <h2 class="mb-0 number-font">5</h2>
-                                        <p class="text-white mb-0">Skor Indeks </p>
-                                    </div>
-                                    <div class="ms-auto"> <i class="fa fa-tachometer text-white fs-30 me-2 mt-2"></i> </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <!-- COL END -->
                     <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3">
@@ -51,8 +23,8 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="text-white">
-                                        <h2 class="mb-0 number-font">10</h2>
-                                        <p class="text-white mb-0">Inovasi Inisiatif</p>
+                                        <h2 class="mb-0 number-font">100</h2>
+                                        <p class="text-white mb-0">Total Penyakit</p>
                                     </div>
                                     <div class="ms-auto"> <i class="fa fa-area-chart text-white fs-30 me-2 mt-2"></i> </div>
                                 </div>
@@ -66,7 +38,7 @@
                                 <div class="d-flex">
                                     <div class="text-white">
                                         <h2 class="mb-0 number-font">10</h2>
-                                        <p class="text-white mb-0">Inovasi Uji Coba</p>
+                                        <p class="text-white mb-0">Total Gejala</p>
                                     </div>
                                     <div class="ms-auto"> <i class="fa fa-area-chart text-white fs-30 me-2 mt-2"></i> </div>
                                 </div>
@@ -79,7 +51,7 @@
                                 <div class="d-flex">
                                     <div class="text-white">
                                         <h2 class="mb-0 number-font">10</h2>
-                                        <p class="text-white mb-0">Inovasi Penerapan</p>
+                                        <p class="text-white mb-0">Total Pengetahuan</p>
                                     </div>
                                     <div class="ms-auto"> <i class="fa fa-area-chart text-white fs-30 me-2 mt-2"></i> </div>
                                 </div>
@@ -93,7 +65,7 @@
                                 <div class="d-flex">
                                     <div class="text-white">
                                         <h2 class="mb-0 number-font">83,02</h2>
-                                        <p class="text-white mb-0">Total Skor Indeks</p>
+                                        <p class="text-white mb-0">Total Pengguna</p>
                                     </div>
                                     <div class="ms-auto"> <i class="fa fa-pie-chart text-white fs-30 me-2 mt-2"></i> </div>
                                 </div>
@@ -109,7 +81,7 @@
                     <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Ranking Inovasi Perangkat Daerag</h3>
+                                <h3 class="card-title"></h3>
                             </div>
                             <div class="card-body">
                                 <p>Ranking diurutkan berdasarkan nilai Indeks Inovasi</p>

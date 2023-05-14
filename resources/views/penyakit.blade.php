@@ -4,17 +4,7 @@
         <div class="side-app">
 
             <!-- CONTAINER -->
-            <div class="main-container container-fluid">
-
-                <!-- PAGE-HEADER -->
-                <div class="page-header">
-
-                    <div>
-                        <ol class="breadcrumb">
-
-                        </ol>
-                    </div>
-                </div>
+            <div class="main-container container-fluid mt-5">
                 <div class="row row-sm">
                     <div class="col-lg-12">
                         <div class="card">

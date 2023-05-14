@@ -15,7 +15,7 @@ class PengetahuanController extends Controller
     {
         $penyakit = Penyakit::all();
         $gejala = Gejala::all();
-        return view('pengetahuan2',compact('penyakit','gejala'));
+        return view('pengetahuan2', compact('penyakit', 'gejala'));
     }
 
     public function getDatatable(Request $request)
@@ -24,75 +24,103 @@ class PengetahuanController extends Controller
             ->join('gejala as g', 'g.id', 'pe.gejala_id')
             ->join('penyakit as p', 'p.id', 'pe.penyakit_id')
             ->groupBy('p.penyakit_nama')
-            ->select('pe.id', 'p.id as idpenyakit', DB::raw("CONCAT('[',p.penyakit_kode,']','-','[',p.penyakit_nama,']') as nama"), DB::raw('COUNT(pe.gejala_id) as totalgejala'))
+            ->select('pe.id', 'p.id as idpenyakit', 'gejala_id', 'pe.kode_rule', DB::raw("CONCAT('[',p.penyakit_kode,']','-','[',p.penyakit_nama,']') as nama"), DB::raw('COUNT(pe.gejala_id) as totalgejala'))
             ->get();
         return datatables()->of($data)
             ->addColumn('totalgejala', function ($data) {
-                $total = $data->totalgejala . ' Gejala';
+                $gejalas = explode(',', $data->gejala_id);
+                $total = count($gejalas) . ' Gejala';
                 return $total;
             })
             ->addColumn(
                 'details_url',
                 function ($data) {
-                    return route('pengetahuan.details', $data->idpenyakit);
+                    return route('pengetahuan.details', $data->id);
                 }
             )
             ->addColumn('action', function ($data) {
-                $button = '<button type="button" name="delete" id="deletepengetahuan" data-id="' . $data->id . '" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-1"></i> Delete</button>';
+                $button = '<button type="button" name="edit" id="editpengetahuan" data-id="' . $data->id . '" class="btn btn-warning btn-sm"><i class="fa fa-pencil mr-1"></i> edit</button>';
+                $button .= '&nbsp;';
+                $button .= '<button type="button" name="delete" id="deletepengetahuan" data-id="' . $data->id . '" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-1"></i> Delete</button>';
                 return $button;
+            })
+            ->addColumn('datagejala', function ($data) {
+
+                $gejalaId = explode(',', $data->gejala_id);
+                $datagejala = DB::table('gejala')->whereIn('id', $gejalaId)->get();
+                $html = '';
+                // here we prepare the options
+                foreach ($datagejala as $i) {
+                    $html .= '<li>'.'['.$i->kode_gejala.']' .' - '.$i->nama_gejala.'</li>';
+                }
+
+                $return =
+                    '<ol>' . $html. '</ol>';
+
+                return $return;
             })
             ->rawColumns([
                 'details_url',
-                'totalgejala',
+                'datagejala',
                 'action',
             ])
             ->addIndexColumn()
             ->make(true);
     }
 
-    public function getgejala($id)
-    {
-        $data = DB::table('pengetahuan as pe')
-            ->join('gejala as g', 'g.id', 'pe.gejala_id')
-            ->join('penyakit as p', 'p.id', 'pe.penyakit_id')
-            ->where('pe.penyakit_id', $id)
-            ->select(DB::raw("CONCAT('[',g.kode_gejala,']','-','[',g.nama_gejala,']') as nama"), 'g.*')
-            ->get();
-        return datatables()->of($data)
-            ->addColumn('action', function ($data) {
-                $button = '<button type="button" name="delete" id="deletegejala" data-id="' . $data->id . '" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-1"></i> Delete</button>';
-                return $button;
-            })
-            ->rawColumns([
-                'action',
-            ])
-            ->addIndexColumn()
-            ->make(true);
-    }
+    // public function getgejala($id)
+    // {
+    //     $data = DB::table('pengetahuan as pe')
+    //         ->join('gejala as g', 'g.id', 'pe.gejala_id')
+    //         ->join('penyakit as p', 'p.id', 'pe.penyakit_id')
+    //         ->where('pe.id', $id)
+    //         ->select(DB::raw("CONCAT('[',g.kode_gejala,']','-','[',g.nama_gejala,']') as nama"), 'g.*')
+    //         ->get();
+    //     return datatables()->of($data)
+    //         ->addColumn('action', function ($data) {
+    //             $button = '<button type="button" name="delete" id="deletegejala" data-id="' . $data->id . '" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-1"></i> Delete</button>';
+    //             return $button;
+    //         })
+    //         ->rawColumns([
+    //             'action',
+    //         ])
+    //         ->addIndexColumn()
+    //         ->make(true);
+    // }
 
-    public function details($id)
-    {
-        $data = DB::table('pengetahuan as pe')
-            ->join('gejala as g', 'g.id', 'pe.gejala_id')
-            ->join('penyakit as p', 'p.id', 'pe.penyakit_id')
-            ->where('pe.penyakit_id', $id)
-            ->select('p.id as idp','g.id as idg',DB::raw("CONCAT('[',g.kode_gejala,']','-','[',g.nama_gejala,']') as namagejala"))
-            ->get();
+    // public function details($id)
+    // {
 
-        return datatables()->of($data)
-            ->addColumn('aksi', function ($data) {
-                $button = '<button type="button" name="delete" id="deletegejala" data-penyakit="'.$data->idp.'" data-gejala="' . $data->idg . '" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-1"></i> Hapus Gejala</button>';
-                return $button;
-            })
-            ->rawColumns([
-                'aksi',
-            ])
-            ->make(true);
-    }
+    //     $data = DB::table('pengetahuan as pe')
+    //         ->where('pe.id', $id)
+    //         ->select('pe.gejala_id', 'pe.id as ids')
+    //         ->get();
+    //     foreach ($data as $i) {
+    //         $gejalaId = explode(',', $i->gejala_id);
+    //         $datagejala = DB::table('gejala')->whereIn('id', $gejalaId)->get();
+    //     }
+
+    //     return datatables()->of($datagejala)
+    //         ->addColumn('gejala', function ($datagejala) {
+    //             return $datagejala->kode_gejala . " - " . $datagejala->nama_gejala;
+    //         })
+    //         ->addColumn('aksi', function ($datagejala) use ($data) {
+    //             $button = '<button type="button" name="delete" id="deletegejala" data-pengetahuan="' . $data->ids . '" data-gejala="' . $datagejala->id . '" class="btn btn-danger btn-sm"><i class="fa fa-trash mr-1"></i> Hapus Gejala</button>';
+    //             return $button;
+    //         })
+    //         ->rawColumns([
+    //             'aksi',
+    //             'gejala'
+    //         ])
+
+    //         ->make(true);
+    // }
 
     public function simpan(Request $request)
     {
+        // return $request->all();
         $rules = array(
+            'rule'    =>  'required',
             'penyakit'    =>  'required',
             'gejala'     =>  'required',
         );
@@ -107,8 +135,9 @@ class PengetahuanController extends Controller
         //     $loginopd = ;
         // }
         $form_data = array(
+            'kode_rule'        =>  $request->rule,
             'penyakit_id'        =>  $request->penyakit,
-            'gejala_id'        =>  $request->gejala,
+            'gejala_id'        =>  implode(',', $request->gejala)
         );
 
         $inovasi = DB::table('pengetahuan')->insert($form_data);
@@ -120,14 +149,18 @@ class PengetahuanController extends Controller
     public function edit($id)
     {
         $data = DB::table('pengetahuan')->where('id', $id)->first();
-        return response()->json(['data' => $data]);
+        foreach($data as $i){
+            $opt = explode(',',$data->gejala_id);
+        }
+        return response()->json(['data' => $data,'opt'=>$opt]);
     }
 
     public function update(Request $request)
     {
         $formdata = array(
-            'kode_pengetahuan' => $request->kode,
-            'nama_pengetahuan' => $request->nama,
+            'kode_rule' => $request->rule,
+            'penyakit_id' => $request->penyakit,
+            'gejala_id' => implode(',', $request->gejala)
         );
         $data = DB::table('pengetahuan')->where('id', $request->hidden_id)->update($formdata);
         return response()->json(['success' => 'Data is successfully updated']);
@@ -137,11 +170,5 @@ class PengetahuanController extends Controller
     {
         $data = DB::table('pengetahuan')->where('id', $id)->delete();
     }
-    public function hapusgejala($idp,$idg)
-    {
-        $data = DB::table('pengetahuan')
-                ->where('penyakit_id', $idp)
-                ->where('gejala_id', $idg)
-                ->delete();
-    }
+
 }

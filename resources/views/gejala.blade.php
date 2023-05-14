@@ -6,16 +6,7 @@
             <!-- CONTAINER -->
             <div class="main-container container-fluid">
 
-                <!-- PAGE-HEADER -->
-                <div class="page-header">
-
-                    <div>
-                        <ol class="breadcrumb">
-
-                        </ol>
-                    </div>
-                </div>
-                <div class="row row-sm">
+                <div class="row row-sm mt-5">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
@@ -69,7 +60,7 @@
                                         <label for="inputName" class="col-md-3 form-label">Nama Gejala</label>
                                         <div class="col-md-9">
                                             <input type="text" name="nama" id="nama" class="form-control"
-                                                placeholder="nama inovasi">
+                                                placeholder="nama gejala">
                                         </div>
                                     </div>
                                     <div class=" row mb-4">
